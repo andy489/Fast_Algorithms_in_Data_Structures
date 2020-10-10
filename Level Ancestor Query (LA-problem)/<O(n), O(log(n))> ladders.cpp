@@ -104,7 +104,7 @@ void solve() {
     cin >> q;
     while (q--) {
         cin >> v >> d;
-        int ans = LAQ3(v, d); /// O(sqrt(n))
+        int ans = LAQ3(v, d); 
         ans == -1 ? cout << "no such ancestor\n" : cout << ans << '\n';
     }
 }
