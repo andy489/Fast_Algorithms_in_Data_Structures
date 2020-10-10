@@ -38,7 +38,7 @@ void init() { /// hardcoded Tree
 
 void fillJumps(int u) {
     if (u == 1) return;
-    int l = traversal.size() - 1;
+    int l = (int)traversal.size() - 1;
     jump[u].resize(flog[l] + 1);
     int k = 0, j = 1;
     while (j <= l) {
