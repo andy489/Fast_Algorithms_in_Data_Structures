@@ -71,7 +71,7 @@ void solve() {
     cin >> q;
     while (q--) {
         cin >> v >> d;
-        int ans = LAQ4jmp(v, d); /// O(sqrt(n))
+        int ans = LAQ4jmp(v, d);
         ans == -1 ? cout << "no such ancestor\n" : cout << ans << '\n';
     }
 }
