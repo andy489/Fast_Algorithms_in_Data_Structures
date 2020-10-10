@@ -12,7 +12,7 @@ using namespace std;
 int n, leaves;
 vector<list<int>> adj, AL;
 vector<int> par, dep, SL, mark, indexP, flog;
-vector<vector<int>> P, L, jump; /// P = max/long-paths, L=ladders
+vector<vector<int>> P, L, jump; /// P = max/long-paths, L = ladders
 vector<int> traversal; /// shortest path from root to current node
 
 void pre() {
