@@ -12,7 +12,7 @@ using namespace std;
 int n, leaves;
 vector<list<int>> adj, AL;
 vector<int> par, dep, SL, mark, indexP, flog;
-vector<vector<int>> P, L, jump; /// P = max/long-paths, L = ladders
+vector<vector<int>> P, L, jump; /// P = max/long-paths, L=ladders
 vector<int> traversal; /// shortest path from root to current node
 
 void pre() {
@@ -110,22 +110,23 @@ void ladders() {
 }
 
 int LAQ_leaf(int l, int d) {
-    if (d > dep[l]) return -1;
     int k = flog[d];
-    int u = jump[l][k];
-    int ind = indexP[u];
-    int height = dep[L[ind][0]] - dep[u];
-    int searched = height + d - (1 << k);
+    int u = jump[l][flog[d]]; /// jump to a vertex with height at least 2^k 
+    int ind = indexP[u]; /// index of long-path with at least 2^k nodes
+    int height = dep[L[ind][0]] - dep[u]; /// height of node u in ladder
+    int searched = height + d - (1 << k); /// we are sure that it is in that ladder
     return L[ind][searched];
 }
 
 int LAQ_const(int v, int d) {
     if (d == 0) return v;
-    int i = indexP[v];
-    int l = L[i][0];
-    int height = dep[l] - dep[v];
-    if (height + d < L[i].size()) return L[i][height + d];
-    return LAQ_leaf(l, height + d);
+    if (d > dep[v]) return -1;
+    if (d == 1) return par[v];
+    int i = indexP[v]; /// index ot long-path, where v is
+    int l = L[indexP[v]][0]; /// leaf node (first node) in ladder/long-path 
+    int height = dep[l] - dep[v]; /// height of node v in ladder
+    if (height + d < L[i].size()) return L[i][height + d]; /// return the searched ancestor if in the ladder
+    return LAQ_leaf(l, height + d); /// query a leaf (1 jump and 1 ladder)
 }
 
 void solve() {
