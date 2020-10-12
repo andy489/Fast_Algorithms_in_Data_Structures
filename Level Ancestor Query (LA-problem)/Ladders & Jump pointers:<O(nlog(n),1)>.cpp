@@ -22,15 +22,17 @@ void pre() {
 }
 
 void init() { /// hardcoded Tree
-    n = 16, adj.resize(n + 1);
-    adj[1].pb(2), adj[1].pb(3);
-    adj[2].pb(1), adj[2].pb(4), adj[2].pb(5), adj[2].pb(6);
-    adj[3].pb(1), adj[4].pb(2), adj[5].pb(2), adj[5].pb(7), adj[5].pb(8);
-    adj[6].pb(2), adj[7].pb(5), adj[7].pb(9);
-    adj[8].pb(5), adj[8].pb(14), adj[9].pb(7), adj[9].pb(11);
-    adj[10].pb(14), adj[11].pb(9), adj[11].pb(12);
-    adj[12].pb(11), adj[13].pb(14), adj[14].pb(8), adj[14].pb(13), adj[14].pb(10);
-    adj[12].pb(15), adj[15].pb(12), adj[16].pb(15), adj[15].pb(16);
+    cin>>n;
+    adj.resize(n+1);
+    int m,c;
+    for(int i = 1;i<=n;++i){
+        cin>>m;
+        while(m--){
+            cin>>c;
+            adj[i].pb(c);
+            adj[c].pb(i);
+        }
+    }
     par.resize(n + 1), dep.resize(n + 1, -1);
     AL.resize(n), mark.resize(n + 1), indexP.resize(n + 1);
     traversal.reserve(n); /// making traversal vector efficient for a stack (no resizing)
@@ -111,7 +113,7 @@ void ladders() {
 
 int LAQ_leaf(int l, int d) {
     int k = flog[d];
-    int u = jump[l][flog[d]]; /// jump to a vertex with height at least 2^k 
+    int u = jump[l][flog[d]]; /// jump to a vertex with height at least 2^k
     int ind = indexP[u]; /// index of long-path with at least 2^k nodes
     int height = dep[L[ind][0]] - dep[u]; /// height of node u in ladder
     int searched = height + d - (1 << k); /// we are sure that it is in that ladder
@@ -123,7 +125,7 @@ int LAQ_const(int v, int d) {
     if (d > dep[v]) return -1;
     if (d == 1) return par[v];
     int i = indexP[v]; /// index ot long-path, where v is
-    int l = L[indexP[v]][0]; /// leaf node (first node) in ladder/long-path 
+    int l = L[indexP[v]][0]; /// leaf node (first node) in ladder/long-path
     int height = dep[l] - dep[v]; /// height of node v in ladder
     if (height + d < L[i].size()) return L[i][height + d]; /// return the searched ancestor if in the ladder
     return LAQ_leaf(l, height + d); /// query a leaf (1 jump and 1 ladder)
@@ -142,6 +144,7 @@ void solve() {
 
 int main() {
     ios;
+    freopen("input.txt", "r", stdin);
     init();
     dfs();
     counting();
