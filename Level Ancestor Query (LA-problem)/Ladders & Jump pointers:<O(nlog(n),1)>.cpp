@@ -12,7 +12,7 @@ using namespace std;
 int n, leaves;
 vector<list<int>> adj, AL;
 vector<int> par, dep, SL, mark, indexP, flog;
-vector<vector<int>> P, L, jump; /// P = max/long-paths, L=ladders
+vector<vector<int>> P, L, jump; /// P = max/long-paths, L = ladders
 vector<int> traversal; /// shortest path from root to current node
 
 void pre() {
@@ -124,7 +124,7 @@ int LAQ_const(int v, int d) {
     if (d == 0) return v;
     if (d > dep[v]) return -1;
     if (d == 1) return par[v];
-    int i = indexP[v]; /// index ot long-path, where v is
+    int i = indexP[v]; /// index to long-path, where v is
     int l = L[indexP[v]][0]; /// leaf node (first node) in ladder/long-path
     int height = dep[l] - dep[v]; /// height of node v in ladder
     if (height + d < L[i].size()) return L[i][height + d]; /// return the searched ancestor if in the ladder
