@@ -21,7 +21,7 @@ void pre() {
         flog[i] = flog[i / 2] + 1;
 }
 
-void init() { /// hardcoded Tree
+void init() { /// read tree from file
     cin>>n;
     adj.resize(n+1);
     int m,c;
