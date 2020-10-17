@@ -1,6 +1,9 @@
-// github.com/andy489
-// <O(n.log(n), log(n))>
-
+/*
+github.com/andy489
+Complexity: <O(n.log(n), log(n))>
+Link: http://www.spoj.com/problems/DISQUERY/
+*/
+    
 #include <stdio.h>
 #include <vector>
 #include <list>
