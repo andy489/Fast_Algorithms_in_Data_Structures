@@ -1,5 +1,7 @@
 ## Fast Algorithms in Data Structures
 
+### Valuable things have a way of being misunderstood in their own time.
+
 Lecture|Topic|Solution
 :-:|:-:|:-:
 [02/10/20 LA-Problem pt.1](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Level%20Ancestor%20Query%20(LA-problem)/02.10.%20LAQ%20(Level%20Ancestor%20Query)%20pt.1.pdf)<br>[LA-Problem (Cai Qi)](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Level%20Ancestor%20Query%20(LA-problem)/LA-Problem%20(Cai%20Qi).pdf)|Level Ancestor Query (LA-problem)|[Table:**O(n^2,1)**](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Level%20Ancestor%20Query%20(LA-problem)/Table:%3CO(n%5E2,1)%3E.cpp)<br>[Long-Paths:**O(n,sqrt(n))**](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Level%20Ancestor%20Query%20(LA-problem)/Long-paths:%3CO(n,sqrt(n))%3E.cpp)
