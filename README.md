@@ -1,6 +1,6 @@
 ## Fast Algorithms in Data Structures
 
-### Valuable things have a way of being misunderstood in their own time.
+#### Valuable things have a way of being misunderstood in their own time.
 
 Lecture|Topic|Solution
 :-:|:-:|:-:
