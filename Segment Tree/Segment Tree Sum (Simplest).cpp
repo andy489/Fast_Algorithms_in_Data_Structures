@@ -58,6 +58,16 @@ void queries(){
     printf("Insert queries of the form \"l r\":\n");
     while (q--) {
         scanf("%d%d", &l, &r);
+        if(l==0){
+            int pos, newValue;
+            printf("Please update \"pos newValue\":\n");
+            scanf("%d%d", &pos, &newValue);
+            --pos;
+            if(pos < 0 || pos > n)
+                printf("~Bad position\n");
+            a[pos]=newValue;
+            continue;
+        }
         if (l < 1 || r > n) {
             printf("~bad interval bounds\n");
             continue;
