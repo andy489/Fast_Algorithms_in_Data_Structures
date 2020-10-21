@@ -1,3 +1,7 @@
+// github.com/andy489
+
+// https://codeforces.com/contest/1234/problem/D
+
 #include <stdio.h>
 #include <string.h>
 #include <algorithm>
@@ -24,7 +28,7 @@ int countOnes(int x, short i = 0, short cnt = 0) {
             ++cnt;
     return cnt;
 }
-
+// pre-order traversal (Euler)
 void buildEuler(int v, int tl, int tr) { // 2n - 1 memory
     if (tl == tr)
         t[v] = 1 << ind(s[tl]);
