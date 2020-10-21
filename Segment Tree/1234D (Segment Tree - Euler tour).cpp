@@ -9,7 +9,7 @@
 using namespace std;
 
 const int mxN = 1e5;
-int t[2 * mxN + 1];
+int t[2 * mxN - 1];
 int n;
 char s[mxN];
 
