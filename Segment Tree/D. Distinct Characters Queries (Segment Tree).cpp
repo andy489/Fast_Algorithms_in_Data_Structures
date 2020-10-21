@@ -1,3 +1,5 @@
+// https://codeforces.com/contest/1234/problem/D
+
 #include <cstdio>
 #include <vector>
 
