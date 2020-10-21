@@ -35,7 +35,7 @@ int sum(int v, int tl, int tr, int l, int r) {
         return t[v];
     int tm = ((tl + tr) >> 1);
     return sum(v * 2, tl, tm, l, min(r, tm)) +
-           sum(v * 2 + 1, tm + 1, tr, max(1, tm + 1), r);
+           sum(v * 2 + 1, tm + 1, tr, max(l, tm + 1), r);
 }
 
 int update(int v, int tl, int tr, int pos, int newVal) {
