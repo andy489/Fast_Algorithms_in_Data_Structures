@@ -28,13 +28,13 @@ int countBits(int x, int i = 0, int cnt = 0) {
 }
 
 // pre-order traversal (Euler)
-void buildEuler(int v, int tl, int tr) { // 2n - 1 memory
+void buildSegmentTreeEuler(int v, int tl, int tr) { // 2n - 1 memory
     if (tl == tr)
         t[v] = 1 << ind(s[tl]);
     else {
         int tm = tl + tr >> 1;
-        buildEuler(v + 1, tl, tm);
-        buildEuler(v + 2 * (tm - tl + 1), tm + 1, tr);
+        buildSegmentTreeEuler(v + 1, tl, tm);
+        buildSegmentTreeEuler(v + 2 * (tm - tl + 1), tm + 1, tr);
         t[v] = t[v + 1] | t[v + 2 * (tm - tl + 1)];
     }
 }
@@ -81,7 +81,7 @@ void queries() {
 
 int main() {
     init();
-    buildEuler(1, 0, n - 1);
+    buildSegmentTreeEuler(1, 0, n - 1);
     queries();
     return 0;
 }
