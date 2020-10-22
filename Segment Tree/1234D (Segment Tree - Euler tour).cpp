@@ -9,10 +9,8 @@
 using namespace std;
 
 const int mxN = 1e5;
-int t[2 * mxN];
-int n;
 char s[mxN];
-
+int t[2 * mxN], n;
 void init() {
     scanf("%s", s);
     n = strlen(s);
@@ -47,15 +45,15 @@ int queryDiffSymbolsCount(int v, int tl, int tr, int l, int r) {
     if (tl == l && tr == r)
         return t[v];
     int tm = (tl + tr) >> 1;
-    return (queryDiffSymbolsCount(v + 1, tl, tm, l, min(r, tm)) |
-            queryDiffSymbolsCount(v + 2 * (tm - tl + 1), tm + 1, tr, max(l, tm + 1), r));
+    return  queryDiffSymbolsCount(v + 1, tl, tm, l, min(r, tm)) |
+            queryDiffSymbolsCount(v + 2 * (tm - tl + 1), tm + 1, tr, max(l, tm + 1), r);
 }
 
 void update(int v, int tl, int tr, int pos, char newVal) {
     if (tl == tr) {
-        t[v] = (1 << ind(newVal));
+        t[v] = 1 << ind(newVal);
     } else {
-        int tm = (tl + tr) / 2;
+        int tm = tl + tr >> 1;
         if (pos <= tm)
             update(v + 1, tl, tm, pos, newVal);
         else
