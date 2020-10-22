@@ -22,12 +22,13 @@ int ind(char c) {
     return c - 'a';
 }
 
-int countBits(int x, short i = 0, short cnt = 0) {
+int countBits(int x, int i = 0, int cnt = 0) {
     for (; i < 26; ++i)
         if (x & (1 << i))
             ++cnt;
     return cnt;
 }
+
 // pre-order traversal (Euler)
 void buildEuler(int v, int tl, int tr) { // 2n - 1 memory
     if (tl == tr)
@@ -40,27 +41,27 @@ void buildEuler(int v, int tl, int tr) { // 2n - 1 memory
     }
 }
 
-void update(int pos, char newVal, int v, int tl, int tr) {
-    if (tr < pos || tl > pos)
-        return;
-    if (tl == tr) {
-        t[v] = (1 << ind(newVal));
-    } else {
-        int tm = (tl + tr) / 2;
-        update(pos, newVal, v+1, tl, tm);
-        update(pos, newVal, v + 2 * (tm - tl + 1), tm + 1, tr);
-        t[v] = (t[v+1] | t[v + 2 * (tm - tl + 1)]);
-    }
-}
-
-int querySymbolCount(int v, int tl, int tr, int l, int r) {
+int queryDiffSymbolsCount(int v, int tl, int tr, int l, int r) {
     if (l > r)
         return 0;
     if (tl == l && tr == r)
         return t[v];
     int tm = (tl + tr) >> 1;
-    return (querySymbolCount(v+1, tl, tm, l, min(r, tm)) |
-            querySymbolCount(v + 2 * (tm - tl + 1), tm + 1, tr, max(l, tm + 1), r));
+    return (queryDiffSymbolsCount(v + 1, tl, tm, l, min(r, tm)) |
+            queryDiffSymbolsCount(v + 2 * (tm - tl + 1), tm + 1, tr, max(l, tm + 1), r));
+}
+
+void update(int v, int tl, int tr, int pos, char newVal) {
+    if (tl == tr) {
+        t[v] = (1 << ind(newVal));
+    } else {
+        int tm = (tl + tr) / 2;
+        if (pos <= tm)
+            update(v + 1, tl, tm, pos, newVal);
+        else
+            update(v + 2 * (tm - tl + 1), tm + 1, tr, pos, newVal);
+        t[v] = t[v + 1] | t[v + 2 * (tm - tl + 1)];
+    }
 }
 
 void queries() {
@@ -72,10 +73,10 @@ void queries() {
         if (cmd == 2) {
             scanf("%d%d", &l, &r);
             --l, --r;
-            printf("%d\n", countBits(querySymbolCount(1, 0, n - 1, l, r)));
+            printf("%d\n", countBits(queryDiffSymbolsCount(1, 0, n - 1, l, r)));
         } else {
             scanf("%d %c", &l, &ch);
-            update(l - 1, ch, 1, 0, n - 1);
+            update(1, 0, n - 1, l - 1, ch);
         }
     }
 }
