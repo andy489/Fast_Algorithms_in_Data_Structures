@@ -22,7 +22,7 @@ int ind(char c) {
     return c - 'a';
 }
 
-int countOnes(int x, short i = 0, short cnt = 0) {
+int countBits(int x, short i = 0, short cnt = 0) {
     for (; i < 26; ++i)
         if (x & (1 << i))
             ++cnt;
@@ -72,7 +72,7 @@ void queries() {
         if (cmd == 2) {
             scanf("%d%d", &l, &r);
             --l, --r;
-            printf("%d\n", countOnes(querySymbolCount(1, 0, n - 1, l, r)));
+            printf("%d\n", countBits(querySymbolCount(1, 0, n - 1, l, r)));
         } else {
             scanf("%d %c", &l, &ch);
             update(l - 1, ch, 1, 0, n - 1);
