@@ -65,7 +65,8 @@ int main() {
             scanf("%d%d", &l, &r);
             --l, --r;
             printf("%d\n", mini(1, 0, n - 1, l, r));
-        }
+        } else 
+            printf("~bad cmd\n");
     }
 
     return 0;
