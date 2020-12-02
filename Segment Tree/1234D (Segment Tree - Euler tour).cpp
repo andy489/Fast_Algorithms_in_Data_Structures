@@ -53,7 +53,7 @@ void update(int v, int tl, int tr, int pos, char newVal) {
     if (tl == tr) {
         t[v] = 1 << ind(newVal);
     } else {
-        int tm = tl + tr >> 1;
+        int tm = (tl + tr) >> 1;
         if (pos <= tm)
             update(v + 1, tl, tm, pos, newVal);
         else
