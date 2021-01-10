@@ -59,9 +59,6 @@ int main() {
             root = i;
     }
 
-
-    display(root, adj);
-
-    return 0;
+    return display(root, adj), 0;
 }
 
