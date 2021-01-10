@@ -9,3 +9,4 @@ Lecture|Topic|Solution
 [2020-11-06 Perfect Hash](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Perfect%20Hash/2020-11-06%20Perfect%20Hash.pdf)| Perfect Hash|
 [2020-11-13 Willard Algorithm](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Willard%20Algorithm/2020-11-13%20Willard%20Algorithm.pdf)|x-fast, y-fast trees|
 [2020-11-20 van Emde Boas Trees](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/van%20Emde%20Boas%20Trees/2020-11-20%20van%20Emde%20Boas%20trees.pdf)|van Emde Boas trees|
+[2020-11-27 Suffix Automaton pt.1, 2 & 3](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Suffix%20Automaton/2020-11-27%20Suffix%20Automaton.pdf)|Blumer et. al. Algorithm|
