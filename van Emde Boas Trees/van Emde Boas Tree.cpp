@@ -1,7 +1,8 @@
 /*
     van Emde Boas Tree data structure:
     U=2^u is the maximum number of elements that can be stored in the tree (Universe).
-    Without duplicate elements. Without assuming whether the element is present in the data structure or not.
+    Without duplicate elements. 
+    Without assuming whether the element is present in the data structure or not.
     Space	    O(U)b
     Member	    O(log log U)
     Insert	    O(log log U)
