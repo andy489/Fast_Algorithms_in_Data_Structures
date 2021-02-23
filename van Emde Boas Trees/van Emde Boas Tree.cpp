@@ -1,15 +1,17 @@
 /*
     van Emde Boas Tree data structure:
-    M=2^m is the maximum number of elements that can be stored in the tree.
+    U=2^u is the maximum number of elements that can be stored in the tree (Universe).
     Without duplicate elements. Without assuming whether the element has it or not.
-    Space	    O(M)
-    Member	    O(log log M)
-    Insert	    O(log log M)
-    Delete	    O(log log M)
-    Predecessor O(log log M)
-    Successor   O(log log M)
+    Space	    O(U)
+    Member	    O(log log U)
+    Insert	    O(log log U)
+    Delete	    O(log log U)
+    Predecessor O(log log U)
+    Successor   O(log log U)
     Minimum     O(1)
     Maximum     O(1)
+    
+    github.com/andy489
 */
 
 #include <iostream>
