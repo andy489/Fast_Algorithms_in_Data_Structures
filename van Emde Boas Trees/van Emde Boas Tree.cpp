@@ -1,3 +1,17 @@
+/*
+    van Emde Boas Tree data structure:
+    M=2^m is the maximum number of elements that can be stored in the tree.
+    Without duplicate elements. Without assuming whether the element has it or not.
+    Space	    O(M)
+    Member	    O(log log M)
+    Insert	    O(log log M)
+    Delete	    O(log log M)
+    Predecessor O(log log M)
+    Successor   O(log log M)
+    Minimum     O(1)
+    Maximum     O(1)
+*/
+
 #include <iostream>
 #include <vector>
 #include <set>
