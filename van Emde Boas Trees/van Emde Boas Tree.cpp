@@ -10,7 +10,7 @@ typedef long long ll;
 
 class VanEmdeBoasTree{
     struct Node{
-        ll u, size; // 2^u capacity (Universe size), size
+        ll u, size; // 2^u capacity (Universe size), real size
         ll min, max;
         Node *summary;
         vector<Node*> cluster;
