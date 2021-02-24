@@ -9,19 +9,13 @@ using namespace std;
 #define pb push_back
 int n;
 
-vector<list<int>> adj; /// adjacency list
+vector<list<int>> adj{{},{2,3},{1,4,5,6},{1},{2},{2,7,8},{2},{5},{5,9},{8}}; /// adjacency list
 vector<int> par; /// parent function
 vector<vector<int>> table; /// A_I
 
 void init() { /// hardcoded Tree
-    n = 9, adj.resize(n + 1);
-    adj[1].pb(2), adj[1].pb(3);
-    adj[2].pb(1), adj[2].pb(4), adj[2].pb(5), adj[2].pb(6);
-    adj[3].pb(1), adj[4].pb(2);
-    adj[5].pb(2), adj[5].pb(7), adj[5].pb(8);
-    adj[6].pb(2), adj[7].pb(5);
-    adj[8].pb(5), adj[8].pb(9), adj[9].pb(8);
-    par.resize(n + 1);
+    n = adj.size();
+    par.resize(n);
 }
 
 void dfs(int u = 1, int p = -1) {
@@ -33,11 +27,12 @@ void dfs(int u = 1, int p = -1) {
 }
 
 void build() { /// A_I
-    table.assign(n + 1, vector<int>(n, -1));
-    for (int v = 1; v <= n; ++v) {
+    table.assign(n, vector<int>(n, -1));
+    for (int v = 1; v < n; ++v) {
         int p = par[v], d = 1;
         while (p != -1) {
-            table[v][d++] = p, p = par[p];
+            table[v][d++] = p;
+            p = par[p];
         }
     }
 }
@@ -49,15 +44,20 @@ int query(int v, int d) {
 }
 
 void solve() {
-    int q, v, d; cout << "Enter number of queries \"v d\":\n";
+    int q, v, d; cout << "Enter number of queries \"v d\": ";
     cin >> q;
+    cout<<"Enter query \"v d\":\n";
     while (q--) {
         cin >> v >> d;
-        int a = query(v, d)
+        int a = query(v, d);
         (a == -1) ? cout << "no such ancestor\n" : cout << a << '\n';
     }
 }
 
 int main() {
-    return init(), dfs(), build(), solve(), 0;
+    init();
+    dfs();
+    build();
+    solve();
+    return 0;
 }
