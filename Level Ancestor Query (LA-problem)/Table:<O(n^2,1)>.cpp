@@ -9,11 +9,11 @@ using namespace std;
 #define pb push_back
 int n;
 
-vector<list<int>> adj{{},{2,3},{1,4,5,6},{1},{2},{2,7,8},{2},{5},{5,9},{8}}; /// adjacency list
-vector<int> par; /// parent function
-vector<vector<int>> table; /// A_I
+vector<list<int>> adj{{},{2,3},{1,4,5,6},{1},{2},{2,7,8},{2},{5},{5,9},{8}}; // adjacency list
+vector<int> par; // parent function
+vector<vector<int>> table; // A_I
 
-void init() { /// hardcoded Tree
+void init() { // hardcoded Tree
     n = adj.size();
     par.resize(n);
 }
@@ -26,7 +26,7 @@ void dfs(int u = 1, int p = -1) {
     }
 }
 
-void build() { /// A_I
+void build() { // A_I
     table.assign(n, vector<int>(n, -1));
     for (int v = 1; v < n; ++v) {
         int p = par[v], d = 1;
