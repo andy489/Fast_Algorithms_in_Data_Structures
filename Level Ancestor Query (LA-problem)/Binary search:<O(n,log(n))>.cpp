@@ -9,35 +9,25 @@ using namespace std;
 #define ios ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr)
 #define pb push_back
 
-int n, c;
+int n, timer; // occurance time
 
-vector<list<int>> adj;
-vector<vector<int>> LVL;
+vector<list<int>> adj{{},{3,2},{1,6},{1,4,7},{3},{7,8},{2},{3,5,9},{5},{7}}; // adjacency list
+vector<vector<int>> LVL; // level lists
 vector<int> preorder, occurance, depth;
 
-void init() { /// hardcoded Tree
-    n = 9, adj.resize(n + 1);
-    adj[1].pb(3), adj[1].pb(2);
-    adj[3].pb(1), adj[3].pb(4), adj[3].pb(7);
-    adj[2].pb(1), adj[2].pb(6);
-    adj[4].pb(3);
-    adj[7].pb(3), adj[7].pb(9), adj[7].pb(5);
-    adj[6].pb(2);
-    adj[9].pb(7);
-    adj[5].pb(7), adj[5].pb(8);
-    adj[8].pb(5);
-
-    LVL.resize(n);
-    preorder.resize(n + 1);
-    occurance.resize(n + 1);
-    depth.resize(n + 1);
+void init() { // hardcoded Tree
+    n = (int)adj.size();
+    LVL.resize(n-1);
+    preorder.resize(n);
+    occurance.resize(n);
+    depth.resize(n);
 }
 
-void dfs(int u = 1, int par = -1, int d = 0) { /// O(n) preprocess
-    ++c;
+void dfs(int u = 1, int par = -1, int d = 0) { // O(n) preprocess
+    ++timer;
     depth[u] = d;
-    occurance[u] = c;
-    preorder[c] = u;
+    occurance[u] = timer;
+    preorder[timer] = u;
     LVL[d].pb(u);
     for (const int &child:adj[u]) {
         if (child == par) continue;
@@ -45,9 +35,9 @@ void dfs(int u = 1, int par = -1, int d = 0) { /// O(n) preprocess
     }
 }
 
-int bs(int el, int lvl) { /// O(logn) binary search
-    int l = 0, r = LVL[lvl].size() - 1;
-    int mid, ans;
+int bs(int el, int lvl) { // O(logn) binary search
+    int l = 0, r = (int)LVL[lvl].size() - 1;
+    int mid, ans(0);
     while (l <= r) {
         mid = (l + r) >> 1;
         int a = occurance[LVL[lvl][mid]];
@@ -64,24 +54,23 @@ int bs(int el, int lvl) { /// O(logn) binary search
 int LAQ3(int v, int d) {
     if (d == 0) return v;
     if (d > depth[v]) return -1;
-    d = depth[v] - d; /// O(1)
-    int ancestor = bs(occurance[v], d); /// O(log(n))
+    d = depth[v] - d; // O(1)
+    int ancestor = bs(occurance[v], d); // O(log(n))
     return ancestor;
 }
-
 
 int main() {
     ios;
     init();
     dfs();
 
-    int q, v, d;
+    int q, v, d; cout << "Enter number of queries of the form \"v d\": ";
     cin >> q;
+    cout<<"Enter query \"v d\":\n";
     while (q--) {
         cin >> v >> d;
         int a = LAQ3(v, d);
         (a == -1) ? cout << "no such ancestor\n" : cout << LAQ3(v, d) << '\n';
     }
-
     return 0;
 }
