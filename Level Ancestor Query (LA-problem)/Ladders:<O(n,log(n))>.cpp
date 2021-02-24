@@ -10,28 +10,20 @@ using namespace std;
 #define pb push_back
 
 int n, leaves;
-vector<list<int>> adj, AL;
-vector<int> par, dep, SL, mark, indexp;
-vector<vector<int>> P, L; /// P=max/long-paths, L=ladders
+vector<list<int>> adj{{},{2,3},{1,4,5,6},{1},{2},{2,7,8},{2},{5,9},{5,14},{7,11},{14},{9,12},{11},{14},{8,10,13}}, AL; // All Leaves
+vector<int> par, dep, SL, mark, indexp; // parent, depth, Sorted Leaves, visited, max-Path index
+vector<vector<int>> P, L; // P = max/long-Paths, L = ladders
 
-void init() { /// hardcoded Tree
-    n = 14, adj.resize(n + 1);
-    adj[1].pb(2), adj[1].pb(3);
-    adj[2].pb(1), adj[2].pb(4), adj[2].pb(5), adj[2].pb(6);
-    adj[3].pb(1), adj[4].pb(2), adj[5].pb(2), adj[5].pb(7), adj[5].pb(8);
-    adj[6].pb(2), adj[7].pb(5), adj[7].pb(9);
-    adj[8].pb(5), adj[8].pb(14), adj[9].pb(7), adj[9].pb(11);
-    adj[10].pb(14), adj[11].pb(9), adj[11].pb(12);
-    adj[12].pb(11), adj[13].pb(14), adj[14].pb(8), adj[14].pb(13), adj[14].pb(10);
-
-    par.resize(n + 1), dep.resize(n + 1, -1);
-    AL.resize(n), mark.resize(n + 1), indexp.resize(n + 1);
+void init() { // hardcoded Tree
+    n = (int)adj.size();
+    par.resize(n), dep.resize(n, -1);
+    AL.resize(n-1), mark.resize(n), indexp.resize(n);
 }
 
 void dfs(int u = 1, int p = 0) {
-    par[u] = p; /// parent function fill
-    dep[u] = dep[p] + 1; /// depth function fill
-    if (adj[u].size() == 1) AL[dep[u]].push_back(u), leaves++; /// All Leaves array of lists
+    par[u] = p; // parent function fill
+    dep[u] = dep[p] + 1; // depth function fill
+    if (adj[u].size() == 1) AL[dep[u]].push_back(u), leaves++; // All Leaves array of lists
     for (const int &child:adj[u]) {
         if (child == p) continue;
         dfs(child, u);
@@ -39,7 +31,7 @@ void dfs(int u = 1, int p = 0) {
 }
 
 void counting() {
-    SL.resize(leaves); /// Sorted Leaves (decreasing)
+    SL.resize(leaves); // Sorted Leaves (decreasing)
     int k = 0;
     for (int d = n - 1; d >= 0; --d) {
         while (!AL[d].empty()) {
@@ -61,16 +53,16 @@ void maxPathsDecomposition() {
             mark[v] = true;
             v = par[v];
         }
-        P.pb(currMaxPath); /// P = Max Paths Decomposition
+        P.pb(currMaxPath); // P = Max Paths Decomposition
     }
 }
 
 void ladders() {
     L.resize(leaves);
-    /// we start from the second path, the first contains the root
+    // we start from the second path, the first contains the root
     L[0]=P[0];
     for (int i = 1; i < leaves; ++i) {
-        int SIZE = P[i].size();
+        int SIZE = (int)P[i].size();
         L[i].reserve(2 * SIZE + 1);
         L[i].resize(SIZE);
         int j = 0;
@@ -88,7 +80,7 @@ void ladders() {
 
 int LAQ3(int v, int d) {
     if (d > dep[v]) return -1;
-    int u = L[indexp[v]].back(); /// top element in curr ladder
+    int u = L[indexp[v]].back(); // top element in curr ladder
     int dprim = dep[v] - dep[u];
     if (d <= dprim) {
         int depFirst = dep[L[indexp[v]][0]];
@@ -100,11 +92,12 @@ int LAQ3(int v, int d) {
 
 void solve() {
     int q, v, d;
-    cout << "Enter number of queries of the form \"v d\":\n";
+    cout << "Enter number of queries of the form \"v d\": ";
     cin >> q;
+    cout<<"Enter query \"v d\":\n";
     while (q--) {
         cin >> v >> d;
-        int ans = LAQ3(v, d); 
+        int ans = LAQ3(v, d);
         ans == -1 ? cout << "no such ancestor\n" : cout << ans << '\n';
     }
 }
