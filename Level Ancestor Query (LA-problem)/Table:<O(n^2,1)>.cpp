@@ -55,9 +55,6 @@ void solve() {
 }
 
 int main() {
-    init();
-    dfs();
-    build();
-    solve();
-    return 0;
+    ios;
+    return init(), dfs(), build(), solve(), 0;
 }
