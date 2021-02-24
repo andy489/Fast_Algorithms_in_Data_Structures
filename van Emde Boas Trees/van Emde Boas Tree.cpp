@@ -3,6 +3,17 @@
     U=2^u is the maximum number of elements that can be stored in the tree (Universe).
     Without duplicate elements. 
     Without assuming whether the element is present in the data structure or not.
+    
+    Upgrade on the definition of predecessor and successor:
+    
+    pred(x) = x, if x is in the collection
+    pred(x) = -1, if x is smaller than the smallest element in the collection
+    pred(x) = y, where y is the largest element, smaller than x in the collection
+    
+    succ(x) = x, if x is in the collection
+    succ(x) = -1, if x is larger than the largest element in the collection
+    succ(x) = y, where y is the smallest element, larger than x in the collection
+    
     Space	    O(U)b
     Member	    O(log log U)
     Insert	    O(log log U)
