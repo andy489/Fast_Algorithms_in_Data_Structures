@@ -10,10 +10,10 @@ using namespace std;
 #define pb push_back
 
 int n, leaves;
-vector<list<int>> adj, AL;
-vector<int> par, dep, SL, mark, indexP, flog;
-vector<vector<int>> P, L, jump; /// P = max/long-paths, L = ladders
-vector<int> traversal; /// shortest path from root to current node
+vector<list<int>> adj, AL; // adjacency list, All Leaves
+vector<int> par, dep, SL, mark, indexP, flog; // parent, depth, Sorted leaves, max/long-Path index, floor log
+vector<vector<int>> P, L, jump; // P = max/long-paths, L = ladders
+vector<int> traversal; // shortest path from root to current node
 
 void pre() {
     flog.resize(n);
@@ -21,7 +21,7 @@ void pre() {
         flog[i] = flog[i / 2] + 1;
 }
 
-void init() { /// read tree from file
+void init() { // read tree from file
     cin>>n;
     adj.resize(n+1);
     int m,c;
@@ -35,7 +35,7 @@ void init() { /// read tree from file
     }
     par.resize(n + 1), dep.resize(n + 1, -1);
     AL.resize(n), mark.resize(n + 1), indexP.resize(n + 1);
-    traversal.reserve(n); /// making traversal vector efficient for a stack (no resizing)
+    traversal.reserve(n); // making traversal vector efficient for a stack (no resizing)
     jump.resize(n + 1);
     pre();
 }
@@ -52,10 +52,10 @@ void fillJumps(int u) {
 }
 
 void dfs(int u = 1, int p = 0) {
-    par[u] = p; /// parent function fill
-    dep[u] = dep[p] + 1; /// depth function fill
-    traversal.pb(u); /// traversal path fill
-    if (adj[u].size() == 1) AL[dep[u]].pb(u), leaves++, fillJumps(u);; /// All Leaves array of lists
+    par[u] = p; // parent function fill
+    dep[u] = dep[p] + 1; // depth function fill
+    traversal.pb(u); // traversal path fill
+    if (adj[u].size() == 1) AL[dep[u]].pb(u), leaves++, fillJumps(u);; // All Leaves array of lists
     for (const int &child:adj[u]) {
         if (child == p) continue;
         dfs(child, u);
@@ -64,7 +64,7 @@ void dfs(int u = 1, int p = 0) {
 }
 
 void counting() {
-    SL.resize(leaves); /// Sorted Leaves (decreasing)
+    SL.resize(leaves); // Sorted Leaves (decreasing)
     int k = 0;
     for (int d = n - 1; d >= 0; --d) {
         while (!AL[d].empty()) {
@@ -86,16 +86,16 @@ void maxPathsDecomposition() {
             mark[v] = true;
             v = par[v];
         }
-        P.pb(currMaxPath); /// P = Max Paths Decomposition
+        P.pb(currMaxPath); // P = Max Paths Decomposition
     }
 }
 
 void ladders() {
     L.resize(leaves);
-    /// we start from the second path, the first contains the root
+    // we start from the second path, the first contains the root
     L[0] = P[0];
     for (int i = 1; i < leaves; ++i) {
-        int SIZE = P[i].size();
+        int SIZE = (int)P[i].size();
         L[i].reserve(2 * SIZE + 1);
         L[i].resize(SIZE);
         int j = 0;
@@ -113,10 +113,10 @@ void ladders() {
 
 int LAQ_leaf(int l, int d) {
     int k = flog[d];
-    int u = jump[l][flog[d]]; /// jump to a vertex with height at least 2^k
-    int ind = indexP[u]; /// index of long-path with at least 2^k nodes
-    int height = dep[L[ind][0]] - dep[u]; /// height of node u in ladder
-    int searched = height + d - (1 << k); /// we are sure that it is in that ladder
+    int u = jump[l][flog[d]]; // jump to a vertex with height at least 2^k
+    int ind = indexP[u]; // index of long-path with at least 2^k nodes
+    int height = dep[L[ind][0]] - dep[u]; // height of node u in ladder
+    int searched = height + d - (1 << k); // we are sure that it is in that ladder
     return L[ind][searched];
 }
 
@@ -124,17 +124,18 @@ int LAQ_const(int v, int d) {
     if (d == 0) return v;
     if (d > dep[v]) return -1;
     if (d == 1) return par[v];
-    int i = indexP[v]; /// index to long-path, where v is
-    int l = L[indexP[v]][0]; /// leaf node (first node) in ladder/long-path
-    int height = dep[l] - dep[v]; /// height of node v in ladder
-    if (height + d < L[i].size()) return L[i][height + d]; /// return the searched ancestor if in the ladder
-    return LAQ_leaf(l, height + d); /// query a leaf (1 jump and 1 ladder)
+    int i = indexP[v]; // index to long-path, where v is
+    int l = L[indexP[v]][0]; // leaf node (first node) in ladder/long-path
+    int height = dep[l] - dep[v]; // height of node v in ladder
+    if (height + d < L[i].size()) return L[i][height + d]; // return the searched ancestor if in the ladder
+    return LAQ_leaf(l, height + d); // query a leaf (1 jump and 1 ladder)
 }
 
 void solve() {
     int q, v, d;
-    cout << "Enter number of queries of the form \"v d\":\n";
+    cout << "Enter number of queries of the form \"v d\": ";
     cin >> q;
+    cout<<"Enter query \"v d\":\n";
     while (q--) {
         cin >> v >> d;
         int ans = LAQ_const(v, d);
