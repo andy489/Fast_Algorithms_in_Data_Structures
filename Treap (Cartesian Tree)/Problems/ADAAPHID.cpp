@@ -13,7 +13,7 @@ typedef long long ll;
 typedef struct Node *pnode;
 
 struct Node {
-    ll key, val, sum; // key is A, val is pseudoRand, sum is second int of ID
+    ll key, val, sum; // key is A, val is pseudoRand V, sum is second int of ID
     int prior;
     pnode l, r;
 
