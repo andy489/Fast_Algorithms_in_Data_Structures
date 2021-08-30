@@ -1,3 +1,6 @@
+// Time complexity: O(N*log(N)), where N is the number of aphids
+// Space complexity: O(N)
+
 #include <cstdio>   // printf()
 #include <cstdlib>  // rand()
 
