@@ -99,9 +99,24 @@ private:
             return querySecondVersion(t->l, key);
         }
     }
+    
+    void clear(pnode t) {
+        if (!t)
+            return;
+        clear(t->l);
+        clear(t->r);
+        delete t;
+    }
 
 public:
-    Treap() : root(nullptr) {};
+    Treap() : root(nullptr) {
+        // no time
+        // srand(time(nullptr));
+    };
+    
+    ~Treap() {  // always clean your mess
+        clear(this->root);
+    }
 
     void insert(int key) {
         insert(this->root, new Node(key));
