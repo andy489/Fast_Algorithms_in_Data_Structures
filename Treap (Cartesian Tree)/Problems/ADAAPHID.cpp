@@ -3,8 +3,9 @@
 // Time complexity: O(N*log(N)), where N is the number of aphids
 // Space complexity: O(N)
 
-#include <cstdio>   // printf()
-#include <cstdlib>  // rand()
+#include <cstdio>   // scanf(..), printf(..)
+#include <cstdlib>  // srand(..), rand(..)
+#include <ctime>    // time(..)
 
 using namespace std;
 
@@ -84,7 +85,9 @@ private:
     }
 
 public:
-    Treap() : root(nullptr) {}
+    Treap() : root(nullptr) {
+        srand(time(nullptr));
+    }
 
     ~Treap() {  // always clean your mess
         clear(this->root);
