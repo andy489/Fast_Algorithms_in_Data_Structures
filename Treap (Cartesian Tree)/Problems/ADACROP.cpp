@@ -99,7 +99,21 @@ private:
             return querySecondVersion(t->l, key);
         }
     }
-    
+
+    int queryThirdVersion(int key){
+        int res = 0;
+        pnode t = this->root;
+        while (t) {
+            if (t->key < key) {
+                res += 1 + cnt(t->l);
+                t = t->r;
+            } else {
+                t = t->l;
+            }
+        }
+        return res;
+    }
+
     void clear(pnode t) {
         if (!t)
             return;
@@ -113,7 +127,7 @@ public:
         // no time
         // srand(time(nullptr));
     };
-    
+
     ~Treap() {  // always clean your mess
         clear(this->root);
     }
@@ -127,8 +141,9 @@ public:
     }
 
     int query(int key) {
-        //return queryFirstVersion(this->root, key);
-        return querySecondVersion(this->root, key);
+        //	return queryFirstVersion(this->root, key);
+        //	return querySecondVersion(this->root, key);
+        return queryThirdVersion(key);
     }
 };
 
