@@ -13,3 +13,13 @@ Lecture|Topic|Solution
 [2020-12-11 Ukkonen's Algorithm pt. 1](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Ukkonen's%20Algorithm/2020-12-11%20Ukkonen%20Algorithm%20pt.%201.pdf)<br>[2020-12-18 Ukkonen's Algorithm pt. 2](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Ukkonen's%20Algorithm/2020-12-18%20Ukkonen%20Algorithm%20pt.%202.pdf)|Suffix Tree|
 [2021-01-08 Lempel-Ziv, Suffix Arrays pt.1](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Suffix%20Arrays%2C%20Lempel-Ziv%20Algorithm/2021-01-08%20Lempel-Ziv%2C%20Suffix%20Arrays%20pt.1.pdf)<br>[2021-01-08 Lempel-Ziv, Suffix Arrays pt.2](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Suffix%20Arrays%2C%20Lempel-Ziv%20Algorithm/2021-01-08%20Lempel-Ziv%2C%20Suffix%20Arrays%20pt.2.pdf)|Lempel-Ziv Algorithm<br>Information Theory<br>Suffix Arrays|
 [2021-01-15 Dynamization of Static Data Structures pt.1](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Dynamization/2021-01-15%20Dynamization%20pt.1.pdf)<br>[2021-01-22 Dynamization of Static Data Structures pt.2](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Dynamization/2021-01-22%20Dynamization%20pt.2.pdf)|Dynamization of Static Data Structures|
+
+### Treap
+
+Treaps|[Fast Set Operations Using Treaps](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Fast%20Set%20Operations%20Using%20Treaps.pdf)
+:-:|:-:
+**Problems**|**Solutions**
+[I/O Explanation](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/ADAAPHID%20%E2%80%93%20Ada%20and%20Aphids%20%E2%80%93%20IO%20explanation.pdf)<br>[ADAAPHID - Ada and Aphids](https://www.spoj.com/problems/ADAAPHID/)|[ADAAPHID.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/ADAAPHID.cpp)
+[ADACROP - Ada and Harvest](https://www.spoj.com/problems/ADACROP/)|[ADACROP.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/ADACROP.cpp)
+[E. Radio stations](https://codeforces.com/problemset/problem/762/E)|[762E.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/762E.cpp)
+[COUNT1IT - Ghost Town](https://www.spoj.com/problems/COUNT1IT/)|[COUNT1IT.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/COUNT1IT.cpp)
