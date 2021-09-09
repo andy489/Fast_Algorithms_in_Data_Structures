@@ -17,7 +17,7 @@ Lecture|Topic|Solution
 ### Treap
 
 Treaps|[Fast Set Operations Using Treaps](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Fast%20Set%20Operations%20Using%20Treaps.pdf)
-:-:|:-:
+:-|:-:
 **Problems**|**Solutions**
 [I/O Explanation](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/ADAAPHID%20%E2%80%93%20Ada%20and%20Aphids%20%E2%80%93%20IO%20explanation.pdf)<br>[ADAAPHID - Ada and Aphids](https://www.spoj.com/problems/ADAAPHID/)|[ADAAPHID.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/ADAAPHID.cpp)
 [ADACROP - Ada and Harvest](https://www.spoj.com/problems/ADACROP/)|[ADACROP.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/ADACROP.cpp)
