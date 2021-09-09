@@ -23,3 +23,4 @@ Treaps|[Fast Set Operations Using Treaps](https://github.com/andy489/Fast_Algori
 [ADACROP - Ada and Harvest](https://www.spoj.com/problems/ADACROP/)|[ADACROP.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/ADACROP.cpp)
 [E. Radio stations](https://codeforces.com/problemset/problem/762/E)|[762E.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/762E.cpp)
 [COUNT1IT - Ghost Town](https://www.spoj.com/problems/COUNT1IT/)|[COUNT1IT.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/COUNT1IT.cpp)
+[IITWPC4D - Arrangement Validity](https://www.spoj.com/problems/IITWPC4D/)|[IITWPC4D.cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Treap%20(Cartesian%20Tree)/Problems/IITWPC4D.cpp)
