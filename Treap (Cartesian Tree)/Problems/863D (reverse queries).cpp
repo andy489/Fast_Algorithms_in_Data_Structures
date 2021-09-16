@@ -30,8 +30,9 @@ int main() {
         for (int i = q; i >= 1; --i) {
             if (x >= l[i] && x <= r[i]) {   // if it is in the curr query range
                 if (type[i] == 2) { // rev
-                    x = l[i] + r[i] - x;
-                } else if (x == l[i]) { //cyc - corner case
+                    x = l[i] + r[i] - x;    // 1...l...x...y...r   
+                    //  Let [1...l]=lambda, then y = lambda + (r - l) - (x - lambda) = l + r - l - x + l = l + r - x
+                } else if (x == l[i]) {     //cyc - corner case
                     x = r[i];
                 } else {    // cyc
                     --x;
