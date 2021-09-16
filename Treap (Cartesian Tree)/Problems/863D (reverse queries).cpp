@@ -29,9 +29,9 @@ int main() {
         scanf("%d", &x);
         for (int i = q; i >= 1; --i) {
             if (x >= l[i] && x <= r[i]) {   // if it is in the curr query range
-                if (type[i] == 2) { // reve
+                if (type[i] == 2) { // rev
                     x = l[i] + r[i] - x;
-                } else if (x == l[i]) { //cyc corner case
+                } else if (x == l[i]) { //cyc - corner case
                     x = r[i];
                 } else {    // cyc
                     --x;
