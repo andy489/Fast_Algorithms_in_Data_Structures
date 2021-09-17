@@ -150,7 +150,7 @@ public:
         clear(this->root);
     }
 
-    void smartInsert(ll key) {
+    void smartInsert(int key) {
         pnode found = find(this->root, key);
         if (!found) {
             insert(this->root, new Node(key));
