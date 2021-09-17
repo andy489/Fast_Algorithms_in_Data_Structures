@@ -163,7 +163,7 @@ public:
     void smartErase(int key) {
         pnode found = find(this->root, key);
         if (found) {
-            ll freq = --found->freq;
+            int freq = --found->freq;
             if (!freq) {
                 erase(this->root, key);
             }
