@@ -11,13 +11,12 @@
 using namespace std;
 
 typedef struct Node *pnode;
-typedef long long ll;
 
 struct Node {
-    ll key, prior, cnt, sub;
+    int key, prior, freq, sub;
     pnode l, r;
 
-    Node(ll key) : key(key), prior(rand()), cnt(1), sub(1), l(nullptr), r(nullptr) {}
+    Node(int key) : key(key), prior(rand()), freq(1), sub(1), l(nullptr), r(nullptr) {}
 };
 
 struct Treap {
@@ -38,11 +37,11 @@ private:
 
     void upd(pnode t) {
         if (t) {
-            t->sub = t->cnt + sub(t->l) + sub(t->r);
+            t->sub = t->freq + sub(t->l) + sub(t->r);
         }
     }
 
-    void split(pnode t, ll key, pnode &l, pnode &r) {
+    void split(pnode t, int key, pnode &l, pnode &r) {
         if (!t) {
             l = r = nullptr;
         } else if (key < t->key) {
@@ -64,7 +63,7 @@ private:
         upd(t);
     }
 
-    pnode find(pnode t, ll key) {
+    pnode find(pnode t, int key) {
         if (!t) {
             return nullptr;
         }
@@ -78,7 +77,7 @@ private:
         }
     }
 
-    void updPath(pnode t, ll key) {
+    void updPath(pnode t, int key) {
         if (!t) {
             return;
         }
@@ -102,7 +101,7 @@ private:
         upd(t);
     }
 
-    void erase(pnode &t, ll key) {
+    void erase(pnode &t, int key) {
         if (!t) {
             return;
         }
@@ -117,18 +116,28 @@ private:
         }
     }
 
-    int kthSmallest(pnode t, ll k) {
+    int kthSmallestIterative(pnode t, int k) {
         while (t) {
-            ll lst = sub(t->l);
-
+            int lst = sub(t->l);
             if (lst >= k) {
                 t = t->l;
-            } else if (lst + t->cnt >= k) {
+            } else if (lst + t->freq >= k) {
                 return t->key;
             } else {
-                k -= lst + t->cnt;
+                k -= lst + t->freq;
                 t = t->r;
             }
+        }
+    }
+
+    int kthSmallestRecursive(pnode t, int k) {
+        int lst = sub(t->l);
+        if (lst < k && lst + t->freq >= k) {
+            return t->key;
+        } else if (lst >= k) {
+            return kthSmallestRecursive(t->l, k);
+        } else {
+            return kthSmallestRecursive(t->r, k - lst - t->freq);
         }
     }
 
@@ -146,15 +155,15 @@ public:
         if (!found) {
             insert(this->root, new Node(key));
         } else {
-            ++found->cnt;
+            ++found->freq;
             updPath(this->root, key);
         }
     }
 
-    void smartErase(ll key) {
+    void smartErase(int key) {
         pnode found = find(this->root, key);
         if (found) {
-            ll freq = --found->cnt;
+            ll freq = --found->freq;
             if (!freq) {
                 erase(this->root, key);
             }
@@ -162,28 +171,29 @@ public:
         }
     }
 
-    int kthSmallest(ll k) {
+    int kthSmallest(int k) {
         if (sub(this->root) < k) {
             return -1;
         }
-        return kthSmallest(this->root, k);
+        //return kthSmallestIterative(this->root, k);
+        return kthSmallestRecursive(this->root, k);
     }
 };
 
 int main() {
-    ll N, h;
-    scanf("%lld", &N);
+    int N, h;
+    scanf("%d", &N);
 
     Treap T;
-    vector<ll> prevHigher(N), res(N);
+    vector<int> prevHigher(N), res(N);
 
     for (int i = 0; i < N; ++i) {
-        scanf("%lld", &h);
+        scanf("%d", &h);
         T.smartInsert(h);
     }
 
     for (int i = 0; i < N; ++i) {
-        scanf("%lld", &prevHigher[i]);
+        scanf("%d", &prevHigher[i]);
     }
 
     for (int i = N - 1; i >= 0; --i) {
@@ -192,7 +202,7 @@ int main() {
     }
 
     for (int j = 0; j < N; ++j) {
-        printf("%lld\n", res[j]);
+        printf("%d\n", res[j]);
     }
     return 0;
 }
