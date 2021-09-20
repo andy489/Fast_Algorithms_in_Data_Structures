@@ -1,6 +1,6 @@
 //  https://codeforces.com/contest/702/problem/F
 
-//  Time complexity:  O(max(max(n*log(n), k*log(k)), mxRanges*n*log(n))
+//  Time complexity:  O(max(max(n*log(n), k*log(k)), mxRanges*n*log(k))
 //  Space complexity: O(max(n, max(k, mxRanges)))
 //  mxRanges is defined constant equal to 2047
 
