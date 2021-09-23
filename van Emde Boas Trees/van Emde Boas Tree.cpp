@@ -14,19 +14,18 @@
     succ(x) = -1, if x is larger than the largest element in the collection
     succ(x) = y, where y is the smallest element, larger than x in the collection
     
-    Space	    O(U)b
-    Member	    O(log log U)
-    Insert	    O(log log U)
-    Delete	    O(log log U)
-    Predecessor O(log log U)
-    Successor   O(log log U)
-    Minimum     O(1)
-    Maximum     O(1)
+    Space	        O(U)
+    Member	        O(log log U)
+    Insert	        O(log log U)
+    Delete	        O(log log U)
+    Predecessor     O(log log U)
+    Successor       O(log log U)
+    Minimum         O(1)
+    Maximum         O(1)
     
-    github.com/andy489
+    github.com/andy489/Fast_Algorithms_in_Data_Structures
 */
 
-#include <iostream>
 #include <vector>
 #include <set>
 #include <cmath>
