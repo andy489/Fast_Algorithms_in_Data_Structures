@@ -14,7 +14,7 @@
     succ(x) = -1, if x is larger than the largest element in the collection
     succ(x) = y, where y is the smallest element, larger than x in the collection
     
-    Space	        O(U)
+    Space           O(U)
     Member          O(log log U)
     Insert          O(log log U)
     Delete          O(log log U)
