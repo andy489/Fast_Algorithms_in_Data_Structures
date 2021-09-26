@@ -69,7 +69,7 @@ private:
     void split(pnode t, pnode &l, pnode &r, int key) {
         if (!t) {
             l = r = nullptr;
-        } else if (t->key <= key) { // search for right ones (leave lef ones, which are <= key)
+        } else if (t->key <= key) { // search for right ones (leaves left ones, which are <= key)
             split(t->r, t->r, r, key), l = t;
         } else {
             split(t->l, l, t->l, key), r = t;
