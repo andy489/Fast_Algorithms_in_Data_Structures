@@ -41,7 +41,7 @@ private:
         }
     }
 
-    // splits into <= key and > key
+    // splits by key into <= key and > key
     void split(pnode t, pnode &l, pnode &r, int key) {
         if (!t) {
             return void(l = r = nullptr);
@@ -71,8 +71,8 @@ private:
         merge(t, l, new Node(key));
         merge(t, t, r);
     }
-
-    // split by count
+    
+	// splits by count into =cnt and =total-cnt
     void splitCnt(pnode t, pnode &l, pnode &r, int key, int add = 0) {
         if (!t) {
             return void(l = r = nullptr);
