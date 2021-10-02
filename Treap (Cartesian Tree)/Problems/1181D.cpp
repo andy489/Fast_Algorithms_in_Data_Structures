@@ -24,7 +24,6 @@ struct Node {
     Node(int key) : key(key), prior(rand()), cnt(1), l(nullptr), r(nullptr) {}
 };
 
-
 struct Treap {
 private:
     pnode root;
@@ -48,35 +47,6 @@ private:
         }
     }
 
-    void merge(pnode &t, pnode l, pnode r) {
-        if (!l || !r) {
-            return void(t = l ? l : r);
-        }
-        if (l->prior < r->prior) {
-            merge(r->l, l, r->l), t = r;
-        } else {
-            merge(l->r, l->r, r), t = l;
-        }
-        updCnt(t);
-    }
-
-    int kthSmallest(pnode t, int k) {
-        if (cnt(t) < k) {
-            return -1;
-        }
-        while (t) {
-            int lst = cnt(t->l);
-            if (lst >= k) {
-                t = t->l;
-            } else if (lst + 1 >= k) {
-                return t->key;
-            } else {
-                k -= lst + 1;
-                t = t->r;
-            }
-        }
-    }
-
     void split(pnode t, pnode &l, pnode &r, int key) {
         if (!t)
             l = r = nullptr;
@@ -97,6 +67,23 @@ private:
             insert(it->key < t->key ? t->l : t->r, it);
         }
         updCnt(t);
+    }
+
+    int kthSmallest(pnode t, int k) {
+        if (cnt(t) < k) {
+            return -1;
+        }
+        while (t) {
+            int lst = cnt(t->l);
+            if (lst >= k) {
+                t = t->l;
+            } else if (lst + 1 >= k) {
+                return t->key;
+            } else {
+                k -= lst + 1;
+                t = t->r;
+            }
+        }
     }
 
 public:
