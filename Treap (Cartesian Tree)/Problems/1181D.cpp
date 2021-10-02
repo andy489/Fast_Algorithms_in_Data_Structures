@@ -1,7 +1,7 @@
 //  https://codeforces.com/contest/1181/problem/D
 
 //  Time complexity:    О((m+q)*log(m))
-//  Space complexity:   O(m+ q)
+//  Space complexity:   O(m+q)
 
 #include <cstdio>
 #include <cstdlib>
