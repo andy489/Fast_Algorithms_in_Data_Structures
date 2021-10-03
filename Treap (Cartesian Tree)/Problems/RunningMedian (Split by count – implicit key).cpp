@@ -72,7 +72,7 @@ private:
         merge(t, t, r);
     }
     
-	// splits by count into =cnt and =total-cnt
+    // splits by count into =cnt and =total-cnt
     void splitCnt(pnode t, pnode &l, pnode &r, int key, int add = 0) {
         if (!t) {
             return void(l = r = nullptr);
