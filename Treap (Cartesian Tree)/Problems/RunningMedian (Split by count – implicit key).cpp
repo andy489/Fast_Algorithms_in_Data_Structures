@@ -1,11 +1,7 @@
-/*  
+//	https://www.hackerrank.com/challenges/find-the-running-median/problem
 
-https://www.hackerrank.com/challenges/find-the-running-median/problem
-
-Time complexity:    O(n*log(n))
-Space complexity:   O(n)
-
-*/
+//	Time complexity:    O(n*log(n))
+//	Space complexity:   O(n)
 
 #include <cstdio>
 #include <cstdlib>
