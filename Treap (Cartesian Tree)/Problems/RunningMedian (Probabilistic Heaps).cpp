@@ -86,7 +86,7 @@ public:
 
 
 int main() {
-    ProbabilisticHeap r;                // Probabilistic min Heap
+    ProbabilisticHeap r;        // Probabilistic min Heap
     ProbabilisticHeap l(false); // Probabilistic max Heap
 
     int n, x;
