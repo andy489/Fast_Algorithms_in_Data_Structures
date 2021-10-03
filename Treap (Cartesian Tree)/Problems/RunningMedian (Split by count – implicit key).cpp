@@ -2,11 +2,6 @@
 
 https://www.hackerrank.com/challenges/find-the-running-median/problem
 
-Тhe two-heap solution is more efficient since we answer a query for O(1) time complexity
-and with Treap we answer a query in O(log(n)).
-In the end, this does not affect the final time complexity of the algorithm, 
-because in both cases the insertion of an element takes place at a cost of O(log(n)) time complexity.
-
 Time complexity:    O(n*log(n))
 Space complexity:   O(n)
 
