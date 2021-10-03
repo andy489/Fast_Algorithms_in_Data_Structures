@@ -18,9 +18,10 @@ struct Node {
     Node(int val) : val(val), l(nullptr), r(nullptr) {}
 };
 
-struct ProbabilisticMinHeap {
+struct ProbabilisticHeap {
 private:
     pnode root;
+    bool minFlag;
     int sz;
 
     void clear(pnode &t) {
@@ -52,9 +53,9 @@ private:
 
 public:
 
-    ProbabilisticMinHeap() : root(nullptr), sz(int()) {}
+    ProbabilisticHeap(int minFlag = true) : root(nullptr), sz(int()), minFlag(minFlag) {}
 
-    ~ProbabilisticMinHeap() {
+    ~ProbabilisticHeap() {
         clear(this->root);
     }
 
@@ -64,11 +65,16 @@ public:
 
     void push(int el) {
         ++this->sz;
+        if (!this->minFlag) {
+            el *= -1;
+        }
         merge(this->root, this->root, new Node(el));
     }
 
     int top() {
-
+        if (!this->minFlag) {
+            return -this->root->val;
+        }
         return this->root->val;
     }
 
@@ -78,69 +84,10 @@ public:
     }
 };
 
-struct ProbabilisticMaxHeap {
-private:
-    pnode root;
-    int sz;
-
-    void clear(pnode &t) {
-        if (t) {
-            clear(t->l);
-            clear(t->r);
-            delete t;
-        }
-    }
-
-    void merge(pnode &t, pnode l, pnode r) {
-        if (!l || !r) {
-            return void(t = l ? l : r);
-        }
-        if (l->val < r->val) {
-            swap(l, r);
-        }
-        if (rand() & 1) {
-            swap(l->l, l->r);
-        }
-        merge(l->r, l->r, r), t = l;
-    }
-
-    void pop(pnode &t) {
-        pnode toDel = t;
-        merge(t, t->l, t->r);
-        delete (toDel);
-    }
-
-public:
-
-    ProbabilisticMaxHeap() : root(nullptr), sz(int()) {}
-
-    ~ProbabilisticMaxHeap() {
-        clear(this->root);
-    }
-
-    int size() {
-        return this->sz;
-    }
-
-    void push(int el) {
-        ++this->sz;
-        merge(this->root, this->root, new Node(el));
-    }
-
-    int top() {
-
-        return this->root->val;
-    }
-
-    void pop() {
-        --this->sz;
-        pop(this->root);
-    }
-};
 
 int main() {
-    ProbabilisticMinHeap r;
-    ProbabilisticMaxHeap l;
+    ProbabilisticHeap r;                // Probabilistic min Heap
+    ProbabilisticHeap l(false); // Probabilistic max Heap
 
     int n, x;
     scanf("%d", &n);
