@@ -1,3 +1,14 @@
+/*
+
+The idea of using Treap data structure for storing the transitions 
+in every Node of the automaton is thanks to Iliyan Yordanov Yordanov
+
+The construction time complexity of the automaton is guaranteed O(n*log(Sigma)),
+where Sigma is the size of the alphabet and if we treat Sigma as a constant, then
+the overall time complexity will be O(n)
+
+*/
+
 #include <unistd.h> // F_OK, R_OK macros for the access function
 #include <fstream> // For input stream class to operate on files
 #include <vector>
