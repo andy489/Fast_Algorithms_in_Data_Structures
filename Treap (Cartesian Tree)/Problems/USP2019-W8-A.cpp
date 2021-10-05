@@ -20,11 +20,11 @@ struct Node {
     pnode l, r;
 
     // prior = random variable for balancing the tree
-    // cnt = count of nodes in subtree with root this node (inclusive)
-    // val = value of this node
-    // sum = sum of values in nodes of subtree with this node (inclusive)
+    // cnt = the count of nodes in subtree with root this node (inclusive)
+    // val = the value of this node
+    // sum = the sum of values in nodes of subtree with root this node (inclusive)
     // rev = bool flag for indicating a reversal took place
-    // l and r = left and right children of this node
+    // l and r = the left and right children of this node
 
     Node(int val, int prior) : prior(prior), val(val), cnt(1), sum(val), rev(false), l(nullptr), r(nullptr) {}
 };
