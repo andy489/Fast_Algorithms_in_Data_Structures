@@ -1,24 +1,29 @@
-// github.com/andy489
-
+#include <iostream>
 #include <vector>
 #include <stack>
 
 using namespace std;
 
-vector<int> build(int *A, int n) {
+vector<int> build(const int *A, int n) {
     vector<int> parent(n, -1);
     stack<int> s;
 
     for (int i = 0; i < n; ++i) {
         int last = -1;
+
         while (!s.empty() && A[s.top()] >= A[i]) {
             last = s.top();
             s.pop();
         }
-        if (!s.empty())
+
+        if (!s.empty()) {
             parent[i] = s.top();
-        if (last >= 0)
+        }
+
+        if (last >= 0) {
             parent[last] = i;
+        }
+
         s.push(i);
     }
     return parent;
@@ -36,10 +41,12 @@ void display(int u, vector<vector<int>> &adj) {
             int cur = Q.front();
             Q.pop();
             printf("%d ", cur);
-            for (const int &child: adj[cur])
+            for (const int &child: adj[cur]) {
                 Q.push(child);
+            }
+
         }
-        printf("\n");
+        cout << endl;
     }
 }
 
@@ -52,11 +59,13 @@ int main() {
     vector<vector<int>> adj(n, vector<int>());
 
     int root = -1;
+
     for (int i = 0; i < n; ++i) {
-        if (CartesianTree[i] != -1)
+        if (CartesianTree[i] != -1) {
             adj[CartesianTree[i]].push_back(i);
-        else
+        } else {
             root = i;
+        }
     }
 
     return display(root, adj), 0;
