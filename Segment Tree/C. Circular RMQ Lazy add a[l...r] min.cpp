@@ -32,7 +32,9 @@ void update(int v, int tl, int tr, int l, int r, int addend) {
         lazy[v] += addend;
     } else {
         int tm = (tl + tr) >> 1;
-        int c1 = v + 1, c2 = v + 2 * (tm - tl + 1);
+        
+        int c1 = v + 1;
+        int c2 = v + 2 * (tm - tl + 1);
 
         push(v, c1, c2);
         update(c1, tl, tm, l, min(r, tm), addend);
