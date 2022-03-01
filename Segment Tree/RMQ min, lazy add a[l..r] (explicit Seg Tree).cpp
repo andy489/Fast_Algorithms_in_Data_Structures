@@ -38,7 +38,8 @@ int memory_cnt;
 
 void input() {
     scanf("%d%d", &n, &q);
-    for (int i = 0; i < n; i++) {
+
+    for (int i = 0; i < n; ++i) {
         scanf("%d", arr + i);
     }
 }
@@ -74,6 +75,7 @@ void update(segment_node *node, int f, int t, int v) {
     if (f <= node->from && node->to <= t) {
         node->carry += v;
         node->push();
+
         return;
     }
 
@@ -117,8 +119,12 @@ void solve() {
 
 int main() {
     input();
+
     root = new segment_node();
+
     build(root, 0, n - 1);
+
     solve();
+
     return 0;
 }
