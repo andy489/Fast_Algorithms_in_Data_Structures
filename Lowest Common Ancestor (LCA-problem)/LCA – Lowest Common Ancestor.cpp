@@ -1,5 +1,7 @@
 // https://www.spoj.com/problems/LCA/
 
+// Time complexity: <O(nlog(n), log(n))>
+
 #include <iostream>
 #include <vector>
 #include <list>
