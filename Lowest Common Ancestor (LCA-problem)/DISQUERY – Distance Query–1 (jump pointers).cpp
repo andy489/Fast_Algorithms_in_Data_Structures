@@ -1,10 +1,8 @@
-/*
-github.com/andy489
-Complexity: <O(n.log(n), log(n))>
-Link: http://www.spoj.com/problems/DISQUERY/
-*/
-    
-#include <stdio.h>
+// http://www.spoj.com/problems/DISQUERY/
+
+// Time complexity: <O(n.log(n), log(n))>
+
+#include <iostream>
 #include <vector>
 #include <list>
 
@@ -18,97 +16,134 @@ using namespace std;
 int n, flog; // n <- |V|
 
 vector<list<pii>> adj; // adj <- adjacency list
-vector<int> dep, euler; // dep <- depths, euler <- Euler tour
+vector<int> dep, euler_tour; // dep <- depths, euler_tour <- Euler tour
 vector<vector<int>> jump, mini, maxi; // jump <- 2^k-th ancestor, mini|maxi <- sparse tables
 
-void fillJumps(int u) { // fill sparse tables O(log(n))
-    int l = (int) euler.size();
-    int j = 1, i = 0;
+void fill_jumps(int u) { // fill sparse tables O(log(n))
+    int l = (int) euler_tour.size();
+
+    int j = 1;
+    int i = 0;
+
     while (l - j >= 0) {
-        jump[u][i++] = euler[l - j];
+        jump[u][i++] = euler_tour[l - j];
         j <<= 1;
     }
 }
 
 void dfs(int u = 1, int p = 0, int w = 0) { // Euler tour (Depth First Search), O(n)
     dep[u] = dep[p] + 1;
-    fillJumps(u);
-    euler.pb(u); // O(1)
+
+    fill_jumps(u);
+    euler_tour.pb(u); // O(1)
     jump[u][0] = p;
-    if (p)
+
+    if (p) {
         mini[u][0] = maxi[u][0] = w;
+    }
+
     for (int i = 1; i < flog; ++i) {
         if (jump[u][i - 1]) { // fill sparse tables (dynamic programming)
             maxi[u][i] = max(maxi[u][i - 1], maxi[jump[u][i - 1]][i - 1]);
             mini[u][i] = min(mini[u][i - 1], mini[jump[u][i - 1]][i - 1]);
-        } else
+        } else {
             break;
+        }
     }
-    for (const auto &child : adj[u])
+
+    for (const auto &child : adj[u]) {
         if (child.f ^ p) {
             dfs(child.f, u, child.s);
-            euler.pop_back(); // O(1)
+            euler_tour.pop_back(); // O(1)
         }
-
+    }
 }
 
 void init() {
-    scanf("%d", &n);
+    cin >> n;
+
     int m = n;
-    while (m > 1) // flog <- max possible depth
-        ++flog, m >>= 1;
+    while (m > 1) { // flog <- max possible depth
+        ++flog;
+        m >>= 1;
+    }
+
     adj.resize(n + 1);
     dep.resize(n + 1);
     mini.resize(n + 1, vector<int>(flog, 1e9));
     maxi.resize(n + 1, vector<int>(flog, -1));
-    euler.reserve(2 * n - 1); // reserve 2 * n - 1 to guarantee O(1) for push_back
+    euler_tour.reserve(2 * n - 1); // reserve 2 * n - 1 to guarantee O(1) for push_back
     jump.resize(n + 1, vector<int>(flog, 0));
+
     int u, v, w;
     for (int i = 1; i < n; ++i) {
-        scanf("%d%d%d", &u, &v, &w);
+        cin >> u >> v >> w;
+
         adj[u].pb({v, w});
         adj[v].pb({u, w});
     }
 }
 
 pii lca(int u, int v) { // O(log(n))
-    int ansMini = 1e10, ansMaxi = 0;
-    if (dep[u] > dep[v])
+    int ans_mini = static_cast<int>(1e10), ans_maxi = 0;
+
+    if (dep[u] > dep[v]) {
         swap(u, v);
+    }
+
     // traverse with exponential jumps to synchronize depths ot nodes u an v
     for (int i = flog - 1; i >= 0; --i) {
         if (jump[v][i] && dep[jump[v][i]] >= dep[u]) {
-            ansMini = min(ansMini, mini[v][i]);
-            ansMaxi = max(ansMaxi, maxi[v][i]);
+            ans_mini = min(ans_mini, mini[v][i]);
+            ans_maxi = max(ans_maxi, maxi[v][i]);
             v = jump[v][i];
         }
     }
-    if (v == u)
-        return {ansMini, ansMaxi};
+
+    if (v == u) {
+        return {ans_mini, ans_maxi};
+    }
+
     // jump until reach Lowest Common Ancestor
     for (int i = flog - 1; i >= 0; --i) {
         if (jump[v][i] ^ jump[u][i]) {
-            ansMini = min(ansMini, min(mini[v][i], mini[u][i]));
-            ansMaxi = max(ansMaxi, max(maxi[v][i], maxi[u][i]));
+            ans_mini = min(ans_mini, min(mini[v][i], mini[u][i]));
+            ans_maxi = max(ans_maxi, max(maxi[v][i], maxi[u][i]));
+
             v = jump[v][i];
             u = jump[u][i];
         }
     }
-    ansMini = min(ansMini, min(mini[v][0], mini[u][0]));
-    ansMaxi = max(ansMaxi, max(maxi[v][0], maxi[u][0]));
-    return {ansMini, ansMaxi};
+
+    ans_mini = min(ans_mini, min(mini[v][0], mini[u][0]));
+    ans_maxi = max(ans_maxi, max(maxi[v][0], maxi[u][0]));
+
+    return {ans_mini, ans_maxi};
 }
 
-void queries() { // O(q * log(n))
-    int q, u, v;
-    scanf("%d", &q);
+void answer_queries() { // O(q * log(n))
+    int q;
+    cin >> q;
+
+    int u, v;
     while (q--) {
-        scanf("%d %d", &u, &v);
+        cin >> u >> v;
         pii ans = lca(u, v);
-        printf("%d %d\n", ans.f, ans.s);
+
+        cout << ans.f << ' ' << ans.s << endl;
     }
 }
 
 int main() {
-    return init(), dfs(), queries(), 0;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    init();
+
+    dfs();
+
+    answer_queries();
+
+    return 0;
 }
