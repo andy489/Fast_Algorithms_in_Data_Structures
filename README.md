@@ -40,4 +40,5 @@ Treaps|[Fast Set Operations Using Treaps](https://github.com/andy489/Fast_Algori
 
 ### Lowest Common Ancestor
 **Problems**|**Solutions**
+:-|:-:
 [LCA – Lowest Common Ancestor](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Lowest%20Common%20Ancestor%20(LCA-problem)/LCA%20%E2%80%93%20Lowest%20Common%20Ancestor.pdf)|[LCA – Lowest Common Ancestor–1 (jump pointers).cpp](https://github.com/andy489/Fast_Algorithms_in_Data_Structures/blob/main/Lowest%20Common%20Ancestor%20(LCA-problem)/LCA%20%E2%80%93%20Lowest%20Common%20Ancestor.cpp)
